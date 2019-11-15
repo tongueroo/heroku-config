@@ -6,7 +6,7 @@ module HerokuConfig
     desc "aws-rotate APP", "Say aws_rotate to APP"
     long_desc Help.text(:aws_rotate)
     def aws_rotate(app)
-      AwsRotate.new(options).run
+      AwsRotate.new(options.merge(app: app)).run
     end
 
     desc "completion *PARAMS", "Prints words for auto-completion."
