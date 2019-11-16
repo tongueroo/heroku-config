@@ -1,4 +1,4 @@
-# HerokuConfig
+# heroku-config
 
 [![Gem Version](https://badge.fury.io/rb/heroku-config.png)](http://badge.fury.io/rb/heroku-config)
 
