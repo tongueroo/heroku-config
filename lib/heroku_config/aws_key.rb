@@ -2,6 +2,7 @@ module HerokuConfig
   class AwsKey < Base
     include AwsServices
     class MaxKeysError < StandardError; end
+    class AccessKeyNotFound < StandardError; end
 
     def initialize(options, access_key_id)
       @options, @access_key_id = options, access_key_id
@@ -26,13 +27,19 @@ module HerokuConfig
       true
     end
 
-    def get_user_name
+    def get_user_name(quiet_error: true)
       return "fakeuser" if @options[:noop]
 
-      resp = iam.get_access_key_last_used(
-        access_key_id: @access_key_id,
-      )
-      resp.user_name
+      begin
+        resp = iam.get_access_key_last_used(
+          access_key_id: @access_key_id,
+        )
+        resp.user_name
+      rescue Aws::IAM::Errors::AccessDenied => e # "obscure" error if access key is not found also
+        puts "#{e.class} #{e.message}".color(:red)
+        puts "Are you sure the access key exists?"
+        @options[:cli] ? exit(1) : raise(AccessKeyNotFound)
+      end
     end
 
     def wait_until_usable(key, secret)
