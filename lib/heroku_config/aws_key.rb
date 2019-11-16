@@ -21,13 +21,39 @@ module HerokuConfig
 
       check_max_keys_limit!(user_name)
       new_key, new_secret = create_access_key(user_name)
+      wait_until_usable(new_key, new_secret)
 
       update_heroku_config(new_key, new_secret)
-      # update_aws_credentials_file(key.access_key_id, key.secret_access_key)
-      # delete_old_access_key
-      # patience_message
-      # aws_environment_variables_warning
-      # true
+      delete_old_access_key(user_name)
+
+      true
+    end
+
+    def wait_until_usable(key, secret)
+      delay, retries = 5, 0
+      begin
+        sts.get_caller_identity
+        true
+      rescue Aws::STS::Errors::InvalidClientTokenId => e
+        puts "#{e.class}: #{e.message}"
+        retries += 1
+        if retries <= 20
+          puts "New IAM key not usable yet. Delaying for #{delay} seconds and retrying..."
+          sleep delay
+          retry
+        end
+      end
+    end
+
+    def delete_old_access_key(user_name)
+      resp = iam.list_access_keys(user_name: user_name)
+      access_keys = resp.access_key_metadata
+      # Important: Only delete if there are keys 2.
+      return if access_keys.size <= 1
+
+      old_key = access_keys.sort_by(&:create_date).first
+      iam.delete_access_key(user_name: user_name, access_key_id: old_key.access_key_id)
+      puts "Old access key deleted: #{old_key.access_key_id}"
     end
 
     def update_heroku_config(new_key, new_secret)
@@ -35,6 +61,7 @@ module HerokuConfig
         "AWS_ACCESS_KEY_ID" => new_key,
         "AWS_SECRET_ACCESS_KEY" => new_secret,
       )
+      puts "Setting heroku config variables"
       puts out
     end
 
@@ -48,7 +75,6 @@ module HerokuConfig
     #     create_date=2019-08-13 21:14:35 UTC>>
     #
     def create_access_key(user_name)
-      puts "create_access_key user_name #{user_name.inspect}"
       resp = iam.create_access_key(
         user_name: user_name,
       )

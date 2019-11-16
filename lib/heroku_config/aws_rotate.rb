@@ -12,7 +12,6 @@ module HerokuConfig
         exit 0
       end
 
-      puts "key_id #{key_id}"
       aws_key = AwsKey.new(@options, key_id)
       aws_key.rotate
     end
