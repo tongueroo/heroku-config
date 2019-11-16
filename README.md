@@ -4,6 +4,8 @@
 
 Easily rotate AWS keys and heroku configs.
 
+Do you have long-term AWS credentials like `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` deployed to your Heroku applications? When was the last time they were rotated?  Rotating AWS keys is one of the simplest security measures to take. Usually though, we're too busy with developing features and rotating keys take a back seat. This tool automates the boring and manual process of rotating keys. Run this on your CodeBuild, jenkins server, a lambda function, or just manualy when you have to.
+
 ## Usage
 
     heroku-config aws-rotate APP
@@ -25,17 +27,13 @@ Easily rotate AWS keys and heroku configs.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem "heroku-config"
-
-And then execute:
-
-    bundle
-
-Or install it yourself as:
+Or install with RubyGems.
 
     gem install heroku-config
+
+Prerequisite:
+
+[The heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) must be installed. This tool calls out to it.
 
 ## Contributing
 
