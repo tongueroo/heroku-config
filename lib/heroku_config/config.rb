@@ -8,6 +8,7 @@ module HerokuConfig
     end
 
     def get(name)
+      return "fakevalue" if ENV['HEROKU_CONFIG_TEST']
       sh "heroku config:get #{name} -a #{@app}"
     end
 

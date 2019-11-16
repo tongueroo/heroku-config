@@ -1,4 +1,4 @@
-ENV["TEST"] = "1"
+ENV["HEROKU_CONFIG_TEST"] = "1"
 
 # CodeClimate test coverage: https://docs.codeclimate.com/docs/configuring-test-coverage
 # require 'simplecov'

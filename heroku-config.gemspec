@@ -19,6 +19,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "activesupport"
+  spec.add_dependency "aws-sdk-core" # for aws-sdk-sts
+  spec.add_dependency "aws-sdk-iam"
   spec.add_dependency "memoist"
   spec.add_dependency "rainbow"
   spec.add_dependency "thor"

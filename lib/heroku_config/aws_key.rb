@@ -9,13 +9,10 @@ module HerokuConfig
     end
 
     def rotate
-      resp = iam.get_access_key_last_used(
-        access_key_id: @access_key_id,
-      )
+      user_name = get_user_name
 
-      user_name = resp.user_name
       message = "Updating access key for user: #{user_name}"
-      message = "NOOP: #{message}" if @options[:noop]
+      message = "NOOP: #{message}" if ENV['HEROKU_CONFIG_TEST']
       puts message.color(:green)
       return false if @options[:noop]
 
@@ -27,6 +24,15 @@ module HerokuConfig
       delete_old_access_key(user_name)
 
       true
+    end
+
+    def get_user_name
+      return "fakeuser" if @options[:noop]
+
+      resp = iam.get_access_key_last_used(
+        access_key_id: @access_key_id,
+      )
+      resp.user_name
     end
 
     def wait_until_usable(key, secret)
