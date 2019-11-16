@@ -4,7 +4,9 @@
 
 Quickly rotate [AWS credential keys](https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html) and [heroku configs](https://devcenter.heroku.com/articles/config-vars).
 
-Do you have long-term AWS credentials like `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` deployed to your Heroku applications? When was the last time they were rotated?  Rotating AWS keys is one of the simplest security measures to take. Usually though, we're too busy with developing features and rotating keys take a back seat. This tool automates the boring and manual process of rotating keys. Run this on your CodeBuild, jenkins server, a lambda function, or just manually when you have to.
+Do you have long-term AWS credentials like `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` deployed to your Heroku applications? When was the last time they were rotated?  
+
+Rotating AWS keys is one of the simplest security measures to take. Usually though, we're too busy with developing features and rotating keys take a back seat. This tool automates the boring and manual process of rotating keys. Run this on your CodeBuild, jenkins server, a lambda function, or just manually when you have to.
 
 ## Usage
 
