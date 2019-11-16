@@ -36,7 +36,12 @@ module HerokuConfig
     end
 
     def wait_until_usable(key, secret)
+      puts "Checking if new AWS key is usable yet."
       delay, retries = 5, 0
+      sts = Aws::STS::Client.new(
+        access_key_id: key,
+        secret_access_key: secret,
+      )
       begin
         sts.get_caller_identity
         true
