@@ -8,10 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = HerokuConfig::VERSION
   spec.authors       = ["Tung Nguyen"]
   spec.email         = ["tongueroo@gmail.com"]
-  spec.summary       = "Generated with cli-template tool. Please write a gem summary"
-  spec.description   = "Generated with cli-template tool. Write a longer description or delete this line."
-  spec.homepage      = "https://github.com/USERNAME/heroku-config" # TODO: changeme
-  spec.license       = ""
+  spec.summary       = "Heroku Config AWS Access Key Rotator"
+  spec.homepage      = "https://github.com/tongueroo/heroku-config" # TODO: changeme
+  spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
   spec.bindir        = "exe"
