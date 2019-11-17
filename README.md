@@ -10,6 +10,12 @@ Rotating AWS keys is one of the simplest security measures to take. Usually thou
 
 ## Usage
 
+Switch to an AWS_PROFILE with the permissions to create and delete AWS keys, usually an admin.
+
+    export AWS_PROFILE=yourprofile
+
+Run the `aws-rotate` command.
+
     heroku-config aws-rotate APP
 
 ## Example with Output
