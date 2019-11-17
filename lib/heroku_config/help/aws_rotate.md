@@ -14,5 +14,5 @@
 
     AWS_ACCESS_KEY_ID:     AKIAXZ6ODJLQQEXAMPLE
     AWS_SECRET_ACCESS_KEY: sp4gmsuif0XgYG2cPiZbkvl93kTGaeDDhEXAMPLE
-    Old access key deleted: AKIAXZ6ODJLQSGGE27KK
+    Old access key deleted: AKIAXZ6ODJLQSEXAMPLE
     $

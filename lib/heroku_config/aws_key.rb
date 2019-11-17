@@ -37,7 +37,13 @@ module HerokuConfig
         resp.user_name
       rescue Aws::IAM::Errors::AccessDenied => e # "obscure" error if access key is not found also
         puts "#{e.class} #{e.message}".color(:red)
-        puts "Are you sure the access key exists?"
+        puts <<~EOL
+          Are you sure the access key exists?
+          You can try running the following with an admin user to see if the key exists:
+
+              aws iam get-access-key-last-used --access-key-id #{@access_key_id}
+
+        EOL
         @options[:cli] ? exit(1) : raise(AccessKeyNotFound)
       end
     end
