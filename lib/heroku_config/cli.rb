@@ -3,10 +3,16 @@ module HerokuConfig
     class_option :verbose, type: :boolean
     class_option :noop, type: :boolean
 
-    desc "aws-rotate APP", "Say aws_rotate to APP"
+    desc "aws-rotate APP", "Rotates AWS key for app"
     long_desc Help.text(:aws_rotate)
     def aws_rotate(app)
       AwsRotate.new(options.merge(app: app, cli: true)).run
+    end
+
+    desc "aws-rotate-all FILE", "Rotates AWS key for list of apps"
+    long_desc Help.text(:aws_rotate_all)
+    def aws_rotate_all(file)
+      AwsRotateAll.new(options.merge(file: file)).run
     end
 
     desc "completion *PARAMS", "Prints words for auto-completion."

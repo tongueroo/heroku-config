@@ -33,6 +33,27 @@ Run the `aws-rotate` command.
     Old access key deleted: AKIAXZ6ODJLQSGEXAMPLE
     $
 
+## Rotate Multiple Apps
+
+You can use the `aws-rotate-all` command to rotate a list of heroku apps.
+
+    heroku-config aws-rotate-all FILE
+
+The FILE should contain a list of apps separated by new lines.  Example:
+
+~/heroku-apps.txt:
+
+    radiant-fortress-40674
+    protected-oasis-24054
+
+Then the command would be:
+
+    heroku-config aws-rotate-all ~/heroku-apps.txt
+
+For more help:
+
+    heroku-config aws-rotate-all -h
+
 ## Installation
 
 Install with:

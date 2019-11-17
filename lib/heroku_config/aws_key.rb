@@ -57,6 +57,7 @@ module HerokuConfig
       )
       begin
         sts.get_caller_identity
+        puts "Confirmed that new AWS key is usable."
         true
       rescue Aws::STS::Errors::InvalidClientTokenId => e
         puts "#{e.class}: #{e.message}"

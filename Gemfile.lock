@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    heroku-config (0.1.0)
+    heroku-config (0.2.0)
       activesupport
       aws-sdk-core
       aws-sdk-iam
