@@ -1,6 +1,7 @@
 module HerokuConfig
   class AwsKey < Base
     include AwsServices
+    include AwsKeyNameMap
     class MaxKeysError < StandardError; end
     class AccessKeyNotFound < StandardError; end
 
@@ -83,8 +84,8 @@ module HerokuConfig
 
     def update_heroku_config(new_key, new_secret)
       out = config.set(
-        "AWS_ACCESS_KEY_ID" => new_key,
-        "AWS_SECRET_ACCESS_KEY" => new_secret,
+        id_key_name => new_key,
+        secret_key_name => new_secret,
       )
       puts "Setting heroku config variables"
       puts out

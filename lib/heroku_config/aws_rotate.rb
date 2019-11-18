@@ -1,5 +1,6 @@
 module HerokuConfig
   class AwsRotate < Base
+    include AwsKeyNameMap
     class MaxKeysError < StandardError; end
 
     def initialize(options={})
@@ -8,9 +9,9 @@ module HerokuConfig
     end
 
     def run
-      key_id = config.get("AWS_ACCESS_KEY_ID")
+      key_id = config.get(id_key_name)
       unless key_id
-        puts "WARN: No AWS_ACCESS_KEY_ID found for #{@app.color(:green)} app."
+        puts "WARN: No #{id_key_name} found for #{@app.color(:green)} app."
         if @options[:cli]
           puts "Exiting"
           exit 0
