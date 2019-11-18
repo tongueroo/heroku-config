@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
 
+## [0.4.0]
+- support for custom aws key and secret heroku config var
+
 ## [0.3.0]
 - add aws-rotate-all command
 - friendly error if access key does not exist on heroku app
