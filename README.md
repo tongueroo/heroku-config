@@ -35,7 +35,7 @@ Run the `aws-rotate` command.
 
 ## Custom Heroku Config Variable Names for AWS Key and Secret
 
-Your app may not be using `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` for the heroku config vars. You can specific the config vars to use with the `--id-key-name` and `--secret-key-name` options. Example:
+Your app may not be using `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` for the heroku config vars. You can specify the config vars to use with the `--id-key-name` and `--secret-key-name` options. Example:
 
     heroku-config aws-rotate protected-oasis-24054 --id-key-name AWS_KEY --secret-key-name AWS_SECRET
 
