@@ -33,12 +33,6 @@ Run the `aws-rotate` command.
     Old access key deleted: AKIAXZ6ODJLQSGEXAMPLE
     $
 
-## Custom Heroku Config Variable Names for AWS Key and Secret
-
-Your app may not be using `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` for the heroku config vars. You can specify the config vars to use with the `--id-key-name` and `--secret-key-name` options. Example:
-
-    heroku-config aws-rotate protected-oasis-24054 --id-key-name AWS_KEY --secret-key-name AWS_SECRET
-
 ## Rotate Multiple Apps
 
 You can use the `aws-rotate-all` command to rotate a list of heroku apps.
@@ -59,6 +53,19 @@ Then the command would be:
 For more help:
 
     heroku-config aws-rotate-all -h
+
+## Custom Heroku Config Variable Names for AWS Key and Secret
+
+Your app may not be using `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` for the heroku config vars. You can specify the config vars to use with the `--id-key-name` and `--secret-key-name` options. Example:
+
+    heroku-config aws-rotate protected-oasis-24054 --id-key-name AWS_KEY --secret-key-name AWS_SECRET
+
+For the `heroku-config aws-rotate-all` command, use a `:` to separate the app, id key name, and secret key name for the FILE format. Example:
+
+    radiant-fortress-40674
+    protected-oasis-24054:aws_key:aws_secret
+
+Here `radiant-fortress-40674` will use the default `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`, whereas `protected-oasis-24054` will use `aws_key` and `aws_secret`.
 
 ## Installation
 

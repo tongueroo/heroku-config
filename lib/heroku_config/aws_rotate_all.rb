@@ -11,13 +11,19 @@ module HerokuConfig
         return
       end
 
-      apps.each do |app|
-        AwsRotate.new(@options.merge(app: app)).run
+      apps.each do |app, id_key_name, secret_key_name|
+        options = @options.merge(
+          app: app,
+          id_key_name: id_key_name || 'AWS_ACCESS_KEY_ID',
+          secret_key_name: secret_key_name || 'AWS_SECRET_ACCESS_KEY',
+        )
+        AwsRotate.new(options).run
       end
     end
 
     def apps
-      IO.readlines(@file).map(&:strip).reject(&:empty?)
+      lines = IO.readlines(@file).map(&:strip).reject(&:empty?)
+      lines.map { |l| l.split(':') }
     end
     memoize :apps
   end
