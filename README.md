@@ -2,6 +2,8 @@
 
 [![Gem Version](https://badge.fury.io/rb/heroku-config.png)](http://badge.fury.io/rb/heroku-config)
 
+[![BoltOps Badge](https://img.boltops.com/boltops/badges/boltops-badge.png)](https://www.boltops.com)
+
 Quickly rotate [AWS credential keys](https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html) and [heroku configs](https://devcenter.heroku.com/articles/config-vars).
 
 Do you have long-term AWS credentials like `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` deployed to your Heroku applications? When was the last time they were rotated?
